@@ -1,3 +1,5 @@
+const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient();
+
 const express = require('express');
 const cors = require('cors');
 
@@ -13,7 +15,8 @@ const measures = [
   { id: 3, name: "Drainage System", type: "structural", description: "Channels excess water away from unstable slopes." }
 ];
 
-app.get('/api/measures', (req, res) => {
+app.get('/api/measures', async (req, res) => {
+  const measures = await prisma.mitigationMeasure.findMany();
   res.json(measures);
 });
 
