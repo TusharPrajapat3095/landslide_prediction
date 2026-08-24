@@ -11,9 +11,15 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+
 model MitigationMeasure {
-  id          Int      @id @default(autoincrement())
-  name        String
-  type        String
-  description String
+  id               Int      @id @default(autoincrement())
+  name             String
+  type             String
+  description      String
+  landslideType    String   @default("unknown")
+  costLevel        String   @default("unknown")
+  effectiveness    Int      @default(5)
+  installationTime String   @default("unknown")
 }
